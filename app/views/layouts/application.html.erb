@@ -11,6 +11,36 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg mb-3">
+      <div class="container-fluid">
+        <%= link_to "Private Events", root_path, class: "navbar-brand me-auto btn btn-outline-primary" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end gap-3" id="navbarSupportedContent">
+          <% if current_user %> 
+            <%= link_to "New event", new_event_path, class: "btn btn-primary" %>
+            <%= link_to "My events", my_events_path, class: "btn btn-primary" %>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+          <% else %>
+            <% if controller_name != "sessions" %>
+              <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary text-light" %>
+            <% end %>
+            <% if controller_name != "registrations" %>
+              <%= link_to "Sign up",  new_user_registration_path, class: "btn btn-primary text-light" %>
+            <% end %>
+          <% end%>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">  
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
     <%= yield %>
   </body>
 </html>

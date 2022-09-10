@@ -1,0 +1,8 @@
+<h1>All events</h1>
+<div>
+  <h5>Upcoming:</h5>
+  <%= render 'list', events: @events.upcoming.by_date %>
+
+  <h5>Past:</h5>
+  <%= render 'list', events: @events.past.by_date %>
+</div>

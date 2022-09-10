@@ -1,0 +1,11 @@
+<%if events.empty? %>
+  <div class="text-center mt-5"> <%= "There are no events" %> </div>
+<% end %>
+
+<div class="d-flex flex-column align-items-center">
+  <div class="col-9">
+    <% events.each do |event| %>
+      <%= render 'events/card', event: event %>
+    <% end %>
+  </div>
+</div>

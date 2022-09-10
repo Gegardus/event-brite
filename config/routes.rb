@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # get 'events/index'
+  # get 'events/new'
+  # get 'events/show'
+  # get 'events/edit'
+  # get 'user_events/index'
+  devise_for :users
+  get "my_events", to: "user_events#index"
+  
+  resources :events do 
+    resources :attendances
+  end
+  root "events#index"
 end
